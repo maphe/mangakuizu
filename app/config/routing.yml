@@ -1,0 +1,8 @@
+kuizu_user:
+    resource: "@KuizuUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+kuizu_game:
+    resource: "@KuizuGameBundle/Resources/config/routing.yml"
+    prefix:   /
+

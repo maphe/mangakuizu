@@ -1,0 +1,7 @@
+parameters:
+#    kuizu_user.example.class: Kuizu\UserBundle\Example
+
+services:
+#    kuizu_user.example:
+#        class: %kuizu_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
