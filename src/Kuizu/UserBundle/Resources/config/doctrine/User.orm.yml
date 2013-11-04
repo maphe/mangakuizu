@@ -1,0 +1,20 @@
+Kuizu\UserBundle\Entity\User:
+    type: entity
+    table: mk_user
+    repositoryClass: Kuizu\UserBundle\Repository\UserRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        score:
+            type: integer
+    oneToMany:
+#        answered_questions:
+#            targetEntity: AnsweredQuestion
+#            mappedBy: user
+        questions:
+            targetEntity: Kuizu\GameBundle\Entity\Question
+            mappedBy: author
+    lifecycleCallbacks: {  }
