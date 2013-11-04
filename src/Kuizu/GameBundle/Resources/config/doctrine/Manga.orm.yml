@@ -1,0 +1,35 @@
+Kuizu\GameBundle\Entity\Manga:
+    type: entity
+    table: mk_manga
+    repositoryClass: Kuizu\GameBundle\Repository\MangaRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 100
+        slug:
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                    separator: -
+                    style: default
+                    fields:
+                        - name
+        image:
+            type: string
+            length: 255
+        summary:
+            type: text
+    manyToOne:
+        question:
+            targetEntity: Question
+            inversedBy: answers
+            joinColumn:
+                name: question_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

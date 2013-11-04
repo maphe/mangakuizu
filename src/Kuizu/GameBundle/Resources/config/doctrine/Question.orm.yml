@@ -1,0 +1,42 @@
+Kuizu\GameBundle\Entity\Question:
+    type: entity
+    table: mk_question
+    repositoryClass: Kuizu\GameBundle\Repository\QuestionRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        wording:
+            type: string
+            length: 255
+        points:
+            type: integer
+        nbAlertsDuplicate:
+            type: integer
+            column: nb_alerts_duplicate
+        nbAlertsAnswer:
+            type: integer
+            column: nb_alerts_answer
+        createdAt:
+            type: datetime
+            column: created_at
+    manyToOne:
+        manga:
+            targetEntity: Manga
+            inversedBy: questions
+            joinColumn:
+                name: manga_id
+                referencedColumnName: id
+        author:
+            targetEntity: Kuizu\UserBundle\Entity\User
+            inversedBy: questions
+            joinColumn:
+                name: author_id
+                referencedColumnName: id
+#    oneToMany:
+#        answered_questions:
+#            targetEntity: AnsweredQuestion
+#            mappedBy: question
+    lifecycleCallbacks: {  }

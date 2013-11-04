@@ -1,0 +1,14 @@
+Kuizu\GameBundle\Entity\Answer:
+    type: entity
+    table: mk_answer
+    repositoryClass: Kuizu\GameBundle\Repository\AnswerRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        wording:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
