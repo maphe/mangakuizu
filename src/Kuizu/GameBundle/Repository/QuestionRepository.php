@@ -3,6 +3,7 @@
 namespace Kuizu\GameBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Kuizu\GameBundle\Entity\Manga;
 
 /**
  * QuestionRepository
@@ -12,4 +13,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestionRepository extends EntityRepository
 {
+    public function countByManga(Manga $manga)
+    {
+        $count = $this->createQueryBuilder('q')
+            ->select('count(q.id) as total')
+            ->where('q.manga = :mid')
+            ->setParameter('mid', $manga->getId())
+            ->getQuery()
+            ->getScalarResult();
+
+        return (int) $count[0]['total'];
+    }
 }

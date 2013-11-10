@@ -23,8 +23,10 @@ Kuizu\GameBundle\Entity\Manga:
         image:
             type: string
             length: 255
+            nullable: true
         summary:
             type: text
+            nullable: true
     manyToOne:
         question:
             targetEntity: Question

@@ -1,0 +1,31 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}KuizuGameBundle:Manga:list{% endblock %}
+
+{% block content %}
+<table class="table table-striped">
+    <tr>
+        <th>Manga</th>
+        <th><span class="label">?</span></th>
+        <th><span class="label"><i class="icon-ok-sign icon-white"></i></span></th>
+        <th>Progression</th>
+    </tr>
+    {% for row in table %}
+        <tr {% if row.progress == 100 %}class="success"{% endif %}>
+            <td><a href="{#{{ path('kuizu_detail_manga', {'slug': manga.slug}) }}#}">{{ row.manga.name }}</a></td>
+            <td>{{ row.nb_questions }}</td>
+            <td>{{ row.score }}</td>
+            <td>
+                {% set progressStatus = 'danger' %}
+                {% if row.progress == 100 %}{% set progressStatus = 'success' %}
+                {% elseif row.progress > 50 %}{% set progressStatus = 'info' %}
+                {% elseif row.progress > 20 %}{% set progressStatus = 'warning' %}
+                {% endif %}
+                <div class="progress progress-{{ progressStatus }}">
+                    <div class="bar" style="width: {{ row.progress }}%;"></div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

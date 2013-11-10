@@ -1,0 +1,23 @@
+div.clear {
+    clear: both;
+}
+
+body {
+    width: 940px;
+    margin: auto;
+}
+
+body div#page_main {
+    min-height:600px;
+    margin:10px 0;
+}
+
+nav li {
+    display: inline-block;
+    list-style: none;
+}
+
+#content {
+    padding-top: 50px;
+    min-height: 600px;
+}

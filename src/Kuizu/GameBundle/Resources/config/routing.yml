@@ -9,3 +9,7 @@ play:
 ask:
     pattern: /ask
     defaults: { _controller: KuizuGameBundle:Game:ask }
+
+list:
+    pattern: /manga/list
+    defaults: { _controller: KuizuGameBundle:Manga:list }

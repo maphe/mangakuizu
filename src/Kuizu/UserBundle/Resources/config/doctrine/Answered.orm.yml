@@ -1,0 +1,27 @@
+Kuizu\UserBundle\Entity\Answered:
+    type: entity
+    table: mk_answered
+    repositoryClass: Kuizu\UserBundle\Repository\AnsweredRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        user:
+            targetEntity: Kuizu\UserBundle\Entity\User
+            inversedBy: answered
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+        question:
+            targetEntity: Kuizu\GameBundle\Entity\Question
+            inversedBy: answered
+            joinColumn:
+                name: question_id
+                referencedColumnName: id
+    uniqueConstraints:
+        answer_unicity:
+            columns: user_id,question_id
+    lifecycleCallbacks: {  }
