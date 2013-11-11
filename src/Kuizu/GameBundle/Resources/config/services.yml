@@ -1,8 +1,14 @@
 parameters:
     kuizugame.score.manager.class: Kuizu\GameBundle\Service\ScoreManager
+    kuizugame.question.picker.class: Kuizu\GameBundle\Service\QuestionPicker
 
 services:
     kuizugame.score.manager:
         class: %kuizugame.score.manager.class%
         arguments:
             - @doctrine.orm.entity_manager
+
+    kuizugame.question.picker:
+            class: %kuizugame.question.picker.class%
+            arguments:
+                - @doctrine.orm.entity_manager

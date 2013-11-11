@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class MangaRepository extends EntityRepository
 {
+    /**
+     * @return array<\Kuizu\GameBundle\Entity\Manga>
+     */
+    public function findAllOrderByName()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.name')
+            ->getQuery()
+            ->execute();
+    }
 }

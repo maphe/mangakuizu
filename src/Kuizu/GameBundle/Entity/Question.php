@@ -44,11 +44,40 @@ class Question
      */
     private $author;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $answers;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $answered;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->answered = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function initCreationDate()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
+
+    public function initCounters()
+    {
+        $this->setNbAlertsAnswer(0);
+        $this->setNbAlertsDuplicate(0);
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -64,14 +93,14 @@ class Question
     public function setWording($wording)
     {
         $this->wording = $wording;
-    
+
         return $this;
     }
 
     /**
      * Get wording
      *
-     * @return string 
+     * @return string
      */
     public function getWording()
     {
@@ -87,14 +116,14 @@ class Question
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -110,14 +139,14 @@ class Question
     public function setNbAlertsDuplicate($nbAlertsDuplicate)
     {
         $this->nbAlertsDuplicate = $nbAlertsDuplicate;
-    
+
         return $this;
     }
 
     /**
      * Get nbAlertsDuplicate
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbAlertsDuplicate()
     {
@@ -133,14 +162,14 @@ class Question
     public function setNbAlertsAnswer($nbAlertsAnswer)
     {
         $this->nbAlertsAnswer = $nbAlertsAnswer;
-    
+
         return $this;
     }
 
     /**
      * Get nbAlertsAnswer
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbAlertsAnswer()
     {
@@ -156,14 +185,14 @@ class Question
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -184,14 +213,14 @@ class Question
     public function setManga(\Kuizu\GameBundle\Entity\Manga $manga = null)
     {
         $this->manga = $manga;
-    
+
         return $this;
     }
 
     /**
      * Get manga
      *
-     * @return \Kuizu\GameBundle\Entity\Manga 
+     * @return \Kuizu\GameBundle\Entity\Manga
      */
     public function getManga()
     {
@@ -207,17 +236,83 @@ class Question
     public function setAuthor(\Kuizu\UserBundle\Entity\User $author = null)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
     /**
      * Get author
      *
-     * @return \Kuizu\UserBundle\Entity\User 
+     * @return \Kuizu\UserBundle\Entity\User
      */
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \Kuizu\GameBundle\Entity\Answer $answers
+     * @return Question
+     */
+    public function addAnswer(\Kuizu\GameBundle\Entity\Answer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \Kuizu\GameBundle\Entity\Answer $answers
+     */
+    public function removeAnswer(\Kuizu\GameBundle\Entity\Answer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
+    /**
+     * Add answered
+     *
+     * @param \Kuizu\UserBundle\Entity\Answered $answered
+     * @return Question
+     */
+    public function addAnswered(\Kuizu\UserBundle\Entity\Answered $answered)
+    {
+        $this->answered[] = $answered;
+
+        return $this;
+    }
+
+    /**
+     * Remove answered
+     *
+     * @param \Kuizu\UserBundle\Entity\Answered $answered
+     */
+    public function removeAnswered(\Kuizu\UserBundle\Entity\Answered $answered)
+    {
+        $this->answered->removeElement($answered);
+    }
+
+    /**
+     * Get answered
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswered()
+    {
+        return $this->answered;
     }
 }

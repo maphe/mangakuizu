@@ -2,18 +2,18 @@ Kuizu\UserBundle\Entity\User:
     type: entity
     table: mk_user
     repositoryClass: Kuizu\UserBundle\Repository\UserRepository
-    fields:
+    id:
         id:
             type: integer
-            id: true
             generator:
                 strategy: AUTO
+    fields:
         score:
             type: integer
     oneToMany:
-#        answered_questions:
-#            targetEntity: AnsweredQuestion
-#            mappedBy: user
+        answered:
+            targetEntity: Kuizu\UserBundle\Entity\Answered
+            mappedBy: user
         questions:
             targetEntity: Kuizu\GameBundle\Entity\Question
             mappedBy: author

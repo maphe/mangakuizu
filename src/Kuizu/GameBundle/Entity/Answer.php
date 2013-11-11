@@ -19,11 +19,15 @@ class Answer
      */
     private $wording;
 
+    /**
+     * @var \Kuizu\GameBundle\Entity\Question
+     */
+    private $question;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -39,17 +43,40 @@ class Answer
     public function setWording($wording)
     {
         $this->wording = $wording;
-    
+
         return $this;
     }
 
     /**
      * Get wording
      *
-     * @return string 
+     * @return string
      */
     public function getWording()
     {
         return $this->wording;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \Kuizu\GameBundle\Entity\Question $question
+     * @return Answer
+     */
+    public function setQuestion(\Kuizu\GameBundle\Entity\Question $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return \Kuizu\GameBundle\Entity\Question
+     */
+    public function getQuestion()
+    {
+        return $this->question;
     }
 }

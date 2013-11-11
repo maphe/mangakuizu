@@ -11,4 +11,11 @@ Kuizu\GameBundle\Entity\Answer:
         wording:
             type: string
             length: 255
+    manyToOne:
+        question:
+            targetEntity: Kuizu\GameBundle\Entity\Question
+            inversedBy: answers
+            joinColumn:
+                name: question_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

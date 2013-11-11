@@ -17,14 +17,24 @@ class AnsweredRepository extends EntityRepository
     public function countByUserAndManga(User $user, Manga $manga)
     {
         $count = $this->createQueryBuilder('a')
-            ->select('count(a.id) as total')
+            ->select('count(a.id)')
             ->where('a.user = :uid')
             ->andWhere('a.manga = :mid')
             ->setParameter('uid', $user->getId())
             ->setParameter('mid', $manga->getId())
             ->getQuery()
-            ->getScalarResult();
+            ->getSingleScalarResult();
 
-        return (int) $count[0]['total'];
+        return (int) $count;
+    }
+
+    public function getQuestionIdsByUser(User $user)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a.question')
+            ->where('a.user = :uid')
+            ->setParameter('uid', $user->getId())
+            ->getQuery()
+            ->getScalarResult();
     }
 }

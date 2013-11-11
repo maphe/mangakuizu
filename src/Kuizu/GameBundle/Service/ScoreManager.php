@@ -3,7 +3,7 @@
 namespace Kuizu\GameBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use Kuizu\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\User;
 
 class ScoreManager {
 
@@ -14,9 +14,17 @@ class ScoreManager {
         $this->em = $em;
     }
 
+    /**
+     * Return the full manga list with user score
+     *
+     * @param string|\Symfony\Component\Security\Core\User\User $user
+     * @return array
+     */
     public function getMangaTable($user)
     {
-        $mangas = $this->em->getRepository('KuizuGameBundle:Manga')->findAll();
+        $mangas = $this->em
+            ->getRepository('KuizuGameBundle:Manga')
+            ->findAllOrderByName();
 
         $table = array();
 

@@ -1,15 +1,11 @@
-kuizu_game_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: KuizuGameBundle:Default:index }
-
-play:
+kuizu_game_play:
     pattern: /play
     defaults: { _controller: KuizuGameBundle:Game:play }
 
-ask:
+kuizu_game_ask:
     pattern: /ask
     defaults: { _controller: KuizuGameBundle:Game:ask }
 
-list:
+kuizu_manga_list:
     pattern: /manga/list
     defaults: { _controller: KuizuGameBundle:Manga:list }

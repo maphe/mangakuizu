@@ -35,8 +35,14 @@ Kuizu\GameBundle\Entity\Question:
             joinColumn:
                 name: author_id
                 referencedColumnName: id
-#    oneToMany:
-#        answered_questions:
-#            targetEntity: AnsweredQuestion
-#            mappedBy: question
-    lifecycleCallbacks: {  }
+    oneToMany:
+        answers:
+            targetEntity: Kuizu\GameBundle\Entity\Answer
+            mappedBy: question
+        answered:
+            targetEntity: Kuizu\UserBundle\Entity\Answered
+            mappedBy: question
+    lifecycleCallbacks:
+        prePersist:
+            - initCreationDate
+            - initCounters

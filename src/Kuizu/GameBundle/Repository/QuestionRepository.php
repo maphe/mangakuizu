@@ -4,6 +4,7 @@ namespace Kuizu\GameBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Kuizu\GameBundle\Entity\Manga;
+use Kuizu\UserBundle\Entity\User;
 
 /**
  * QuestionRepository
@@ -13,15 +14,46 @@ use Kuizu\GameBundle\Entity\Manga;
  */
 class QuestionRepository extends EntityRepository
 {
-    public function countByManga(Manga $manga)
+    public function countByManga(Manga $manga = null)
     {
-        $count = $this->createQueryBuilder('q')
-            ->select('count(q.id) as total')
-            ->where('q.manga = :mid')
-            ->setParameter('mid', $manga->getId())
-            ->getQuery()
-            ->getScalarResult();
+        $qb = $this->createQueryBuilder('q')
+            ->select('count(q.id)');
 
-        return (int) $count[0]['total'];
+        if (null !== $manga) {
+            $qb
+                ->where('q.manga = :mid')
+                ->setParameter('mid', $manga->getId());
+        }
+
+        $count = $qb
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return (int) $count;
+    }
+
+    public function findOneRandomlyByManga(Manga $manga = null, array $excludedIds = [])
+    {
+        $count = $this->countByManga($manga) - count($excludedIds);
+
+        $qb = $this->createQueryBuilder('q');
+
+        if (null !== $manga) {
+            $qb
+                ->where('q.manga = :mid')
+                ->setParameter('mid', $manga->getId());
+        }
+
+        if ($excludedIds) {
+            $qb
+                ->andWhere('q.id NOT IN (:excludedIds)')
+                ->setParameter('excludedIds', $excludedIds);
+        }
+
+        return $qb
+            ->setFirstResult(rand(0, $count-1))
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
