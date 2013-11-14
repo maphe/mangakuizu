@@ -12,47 +12,47 @@ class Question
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $wording;
+    protected $wording;
 
     /**
      * @var integer
      */
-    private $points;
+    protected $points;
 
     /**
      * @var integer
      */
-    private $nbAlertsDuplicate;
+    protected $nbAlertsDuplicate;
 
     /**
      * @var integer
      */
-    private $nbAlertsAnswer;
+    protected $nbAlertsAnswer;
 
     /**
      * @var \DateTime
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var \Kuizu\UserBundle\Entity\User
      */
-    private $author;
+    protected $author;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $answers;
+    protected $answers;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $answered;
+    protected $answered;
 
     /**
      * Constructor
@@ -201,7 +201,7 @@ class Question
     /**
      * @var \Kuizu\GameBundle\Entity\Manga
      */
-    private $manga;
+    protected $manga;
 
 
     /**

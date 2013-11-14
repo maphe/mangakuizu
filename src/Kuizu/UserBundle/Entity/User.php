@@ -132,4 +132,9 @@ class User extends BaseUser
     {
         return $this->answered;
     }
+
+    public function incrementScore($points)
+    {
+        $this->setScore($this->getScore()+$points);
+    }
 }

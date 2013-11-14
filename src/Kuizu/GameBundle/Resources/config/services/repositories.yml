@@ -1,0 +1,9 @@
+parameters:
+    kuizugame.question.repo.class: Kuizu\GameBundle\Repository\Question
+
+services:
+    kuizugame.question.repo:
+        class: %kuizugame.question.repo.class%
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: ['KuizuGameBundle:Question']

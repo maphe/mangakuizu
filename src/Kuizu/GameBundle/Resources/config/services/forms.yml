@@ -1,0 +1,10 @@
+parameters:
+    kuizugame.answer.form.type.class: Kuizu\GameBundle\Form\Type\MangaChoiceType
+
+services:
+    kuizugame.answer.form.type:
+        class: %kuizugame.answer.form.type.class%
+        arguments:
+            - @security.context
+        tags:
+            - { name: form.type, alias: manga_choice }

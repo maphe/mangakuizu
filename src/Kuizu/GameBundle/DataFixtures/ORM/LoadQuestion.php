@@ -34,18 +34,16 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
         $question3->setManga($this->getReference('manga-kateikyoushi-hitman-reborn'));
         $question3->setPoints(1);
         $question3->setAuthor($this->getReference('user-soct'));
-        $manager->persist($question3);
+        $manager->persist($question3);*/
 
         $question4 = new Question ();
         $question4->setWording('Qui compose la famille du dixième Vongola ? (Les noms complet sont attendus.)');
-        $question4->setNbrAnswers(7);
-        $question4->setAnswer('Tsunayoshi Sawada, Gokudera Hayato, Yamamoto Takeshi, Ryohei Sasagawa, Hibari Kyoya, Lambo, Chrome Dokuro');
         $question4->setManga($this->getReference('manga-kateikyoushi-hitman-reborn'));
-        $question4->setPoints(7);
+        $question4->setPoints(10);
         $question4->setAuthor($this->getReference('user-soct'));
         $manager->persist($question4);
 
-        $question5 = new Question ();
+        /*$question5 = new Question ();
         $question5->setWording('Qui a créé Bleach ?');
         $question5->setNbrAnswers(1);
         $question5->setAnswer('Tite Kubo');
@@ -473,9 +471,9 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addReference('one-piece-q1', $question1);
         /*$this->addReference('naruto-q1', $question2);
-        $this->addReference('kateikyoushi-hitman-reborn-q1', $question3);
+        $this->addReference('kateikyoushi-hitman-reborn-q1', $question3);*/
         $this->addReference('kateikyoushi-hitman-reborn-q2', $question4);
-        $this->addReference('bleach-q1', $question5);
+        /*$this->addReference('bleach-q1', $question5);
         $this->addReference('bleach-q2', $question6);
         $this->addReference('fairy-tail-q1', $question7);
         $this->addReference('fairy-tail-q2', $question8);

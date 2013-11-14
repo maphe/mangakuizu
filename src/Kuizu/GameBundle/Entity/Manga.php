@@ -12,33 +12,46 @@ class Manga
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string
      */
-    private $image;
+    protected $image;
 
     /**
      * @var string
      */
-    private $summary;
+    protected $summary;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    protected $questions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,14 +67,14 @@ class Manga
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -100,14 +113,14 @@ class Manga
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -123,14 +136,14 @@ class Manga
     public function setSummary($summary)
     {
         $this->summary = $summary;
-    
+
         return $this;
     }
 
     /**
      * Get summary
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -138,30 +151,35 @@ class Manga
     }
 
     /**
-     * @var \Kuizu\GameBundle\Entity\Question
-     */
-    private $question;
-
-    /**
-     * Set question
+     * Add questions
      *
-     * @param \Kuizu\GameBundle\Entity\Question $question
+     * @param \Kuizu\GameBundle\Entity\Question $questions
      * @return Manga
      */
-    public function setQuestion(\Kuizu\GameBundle\Entity\Question $question = null)
+    public function addQuestion(\Kuizu\GameBundle\Entity\Question $questions)
     {
-        $this->question = $question;
-    
+        $this->questions[] = $questions;
+
         return $this;
     }
 
     /**
-     * Get question
+     * Remove questions
      *
-     * @return \Kuizu\GameBundle\Entity\Question 
+     * @param \Kuizu\GameBundle\Entity\Question $questions
      */
-    public function getQuestion()
+    public function removeQuestion(\Kuizu\GameBundle\Entity\Question $questions)
     {
-        return $this->question;
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

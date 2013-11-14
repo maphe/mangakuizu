@@ -31,7 +31,8 @@ class AnsweredRepository extends EntityRepository
     public function getQuestionIdsByUser(User $user)
     {
         return $this->createQueryBuilder('a')
-            ->select('a.question')
+            ->select('q.id')
+            ->innerJoin('a.question', 'q')
             ->where('a.user = :uid')
             ->setParameter('uid', $user->getId())
             ->getQuery()

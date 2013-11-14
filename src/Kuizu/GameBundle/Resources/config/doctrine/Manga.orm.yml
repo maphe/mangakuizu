@@ -27,11 +27,8 @@ Kuizu\GameBundle\Entity\Manga:
         summary:
             type: text
             nullable: true
-    manyToOne:
-        question:
-            targetEntity: Question
-            inversedBy: answers
-            joinColumn:
-                name: question_id
-                referencedColumnName: id
+    oneToMany:
+        questions:
+            targetEntity: Kuizu\GameBundle\Entity\Question
+            mappedBy: manga
     lifecycleCallbacks: {  }

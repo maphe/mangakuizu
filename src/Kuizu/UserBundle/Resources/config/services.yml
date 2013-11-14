@@ -1,3 +1,6 @@
+imports:
+    - { resource: services/repositories.yml }
+
 parameters:
 #    kuizu_user.example.class: Kuizu\UserBundle\Example
 

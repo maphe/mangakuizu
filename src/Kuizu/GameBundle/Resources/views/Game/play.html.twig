@@ -1,10 +1,14 @@
-{% extends "::base.html.twig" %}
+{% extends "KuizuFrontBundle::layout.html.twig" %}
 
 {% block title %}KuizuGameBundle:Game:play{% endblock %}
 
-{% block body %}
+{% block content %}
 <h1>Welcome to the Game:play page</h1>
 {{ form(choice_form) }}
 {{ question.wording }}
-{{ form(game_form) }}
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {{ form(game_form) }}
+{% else %}
+    <p>Vous devez vous authentifier pour pouvoir essayer de répondre</p>
+{% endif %}
 {% endblock %}

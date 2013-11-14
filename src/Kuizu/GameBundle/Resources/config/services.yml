@@ -1,6 +1,12 @@
+imports:
+    - { resource: services/forms.yml }
+    - { resource: services/repositories.yml }
+
 parameters:
     kuizugame.score.manager.class: Kuizu\GameBundle\Service\ScoreManager
     kuizugame.question.picker.class: Kuizu\GameBundle\Service\QuestionPicker
+    kuizugame.game.manager.class: Kuizu\GameBundle\Service\GameManager
+    kuizugame.answer.voter.class: Kuizu\GameBundle\Service\AnswerVoter
 
 services:
     kuizugame.score.manager:
@@ -9,6 +15,19 @@ services:
             - @doctrine.orm.entity_manager
 
     kuizugame.question.picker:
-            class: %kuizugame.question.picker.class%
-            arguments:
-                - @doctrine.orm.entity_manager
+        class: %kuizugame.question.picker.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+
+    kuizugame.game.manager:
+        class: %kuizugame.game.manager.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @session
+            - @kuizugame.question.picker
+            - @kuizugame.answer.voter
+            - @kuizugame.score.manager
+        scope: request
+
+    kuizugame.answer.voter:
+            class: %kuizugame.answer.voter.class%

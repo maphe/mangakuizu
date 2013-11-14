@@ -9,23 +9,44 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GameController extends Controller
 {
-    const SESSION_PICKED_MANGA = 'picked_manga';
-
     public function playAction(Request $request)
     {
-        $mangaChoiceForm = $this->createForm(new MangaChoiceType());
+        $game = $this->get('kuizugame.game.manager');
+
+        $mangaChoiceForm = $this->createForm(
+            'manga_choice',
+            ['manga' => $game->getCurrentManga()]
+        );
         $mangaChoiceForm->handleRequest($request);
 
         if ($mangaChoiceForm->isValid() && $mangaChoiceForm->get('pick')->isClicked()) {
-            $request->getSession()
-                ->set(self::SESSION_PICKED_MANGA, $mangaChoiceForm->getData()['manga']);
+            $manga = $mangaChoiceForm->getData()['manga'];
+            $game->setCurrentManga($manga);
+
+            $game->pickQuestion($this->getUser());
+
+            return $this->redirect($this->generateUrl('kuizu_game_play'));
         }
-        $manga = $request->getSession()->get(self::SESSION_PICKED_MANGA);
 
-        $question = $this->get('kuizugame.question.picker')
-            ->pick($this->getUser(), $manga);
+        $question = $game->getQuestionSmartly($this->getUser());
+        if (null === $question) {
+            // @todo : no more question
+        }
 
-        $gameForm = $this->createForm(new AnswerType($question));
+        $gameForm = $this->createForm(new AnswerType(), null, ['question' => $question]);
+        $gameForm->handleRequest($request);
+
+        if ($gameForm->isValid() && $gameForm->get('propose')->isClicked()) {
+            $answers = $gameForm->getData();
+            $correct = $game->processUserAnswer($this->getUser(), $question, $answers);
+            if (true === $correct) {
+                $request->getSession()->getFlashBag()->add('success', 'Correct ! '.$question->getPoints().' points');
+                $game->pickQuestion($this->getUser());
+            } else {
+                $request->getSession()->getFlashBag()->add('warning', 'Mauvaise réponse, réessayez ou pichez une nouvelle question');
+            }
+            return $this->redirect($this->generateUrl('kuizu_game_play'));
+        }
 
         return $this->render('KuizuGameBundle:Game:play.html.twig', [
             'choice_form' => $mangaChoiceForm->createView(),

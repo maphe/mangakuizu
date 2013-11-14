@@ -3,7 +3,9 @@
 namespace Kuizu\GameBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Security\Core\User\User;
+use Kuizu\GameBundle\Entity\Question;
+use Kuizu\UserBundle\Entity\Answered;
+use Kuizu\UserBundle\Entity\User;
 
 class ScoreManager {
 
@@ -24,7 +26,7 @@ class ScoreManager {
     {
         $mangas = $this->em
             ->getRepository('KuizuGameBundle:Manga')
-            ->findAllOrderByName();
+            ->findWithQuestions();
 
         $table = array();
 
@@ -47,4 +49,17 @@ class ScoreManager {
 
         return $table;
     }
-} 
+
+    public function validateUserAnswer(User $user, Question $question)
+    {
+        $answered = new Answered();
+        $answered->setUser($user);
+        $answered->setQuestion($question);
+        $this->em->persist($answered);
+
+        $user->incrementScore($question->getPoints());
+        $this->em->persist($user);
+
+        $this->em->flush();
+    }
+}

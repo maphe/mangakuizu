@@ -3,6 +3,8 @@
 namespace Kuizu\GameBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
+use Kuizu\UserBundle\Entity\User;
 
 /**
  * MangaRepository
@@ -19,6 +21,47 @@ class MangaRepository extends EntityRepository
     {
         return $this->createQueryBuilder('m')
             ->orderBy('m.name')
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param \Kuizu\UserBundle\Entity\User $user
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function qbWithQuestions(User $user = null)
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        if (null !== $user) {
+            $qbAnswered = $this->createQueryBuilder('m_');
+
+            $qbAnswered
+                ->select('q_.id')
+                ->innerJoin('m_.questions', 'q_')
+                ->innerJoin('q_.answered', 'a_')
+                ->where($qbAnswered->expr()->eq('a_.user', $user->getId()));
+
+            $qb->innerJoin(
+                'm.questions', 'q',
+                Join::WITH,
+                $qb->expr()->notIn('q.id', $qbAnswered->getDQL())
+            );
+        } else {
+            $qb->innerJoin('m.questions', 'q');
+        }
+
+        $qb->orderBy('m.name');
+
+        return $qb;
+    }
+
+    /**
+     * @return array<\Kuizu\GameBundle\Entity\Manga>
+     */
+    public function findWithQuestions()
+    {
+        return $this->qbWithQuestions()
             ->getQuery()
             ->execute();
     }

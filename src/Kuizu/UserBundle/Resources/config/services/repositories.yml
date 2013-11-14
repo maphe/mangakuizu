@@ -1,0 +1,9 @@
+parameters:
+    kuizuuser.answered.repo.class: Kuizu\UserBundle\Repository\Answered
+
+services:
+    kuizuuser.answered.repo:
+        class: %kuizuuser.answered.repo.class%
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: ['KuizuUserBundle:Answered']
