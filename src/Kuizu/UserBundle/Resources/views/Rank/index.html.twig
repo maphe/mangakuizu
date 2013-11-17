@@ -1,0 +1,33 @@
+{% extends 'KuizuFrontBundle::layout.html.twig' %}
+
+{% block title %}KuizuUserBundle:Rank:index{% endblock %}
+
+{% block content %}
+    {% set position = ranking.getStartCount() %}
+    {% set previous_score = -1 %}
+    <table class="table table-striped">
+        <tr>
+            <th>Position</th>
+            <th>Joueur</th>
+            <th>Score</th>
+        </tr>
+        {% for user in ranking.users %}
+            <tr {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.id == user.id %}class="success"{% endif %}>
+                <td>{% if user.score == previous_score %}-{% else %}{{ position }}{% endif %}</td>
+                <td><a href="{# path('kuizu_user_detail', {'id': user.id} )#}">{{ user.username }}</a></td>
+                <td>{{ user.score }}</td>
+            </tr>
+            {% set position = position + 1 %}
+            {% set previous_score = user.score %}
+        {% endfor %}
+    </table>
+    {% set pager = ranking.pager %}
+
+    {% include 'KuizuFrontBundle:Util:paginator.html.twig' with {'pager': pager} only %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <ul class="pager">
+            <li><a href="{{ path('kuizuuser_rank', {'page': 'me'}) }}">Ma position</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}

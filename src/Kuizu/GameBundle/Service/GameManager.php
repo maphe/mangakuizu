@@ -64,7 +64,7 @@ class GameManager
         return (null === $question) ? null : $this->em->merge($question);
     }
 
-    public function getQuestionSmartly(User $user)
+    public function getQuestionSmartly(User $user = null)
     {
         $question = $this->getCurrentQuestion();
         if (null === $question) {

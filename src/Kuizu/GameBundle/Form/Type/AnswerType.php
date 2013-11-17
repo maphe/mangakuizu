@@ -2,34 +2,32 @@
 
 namespace Kuizu\GameBundle\Form\Type;
 
-use Kuizu\GameBundle\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AnswerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        for ($i = 0; $i < $options['question']->getAnswers()->count(); $i++) {
-            $builder->add('answer_'.$i, 'text', [
-                'label' => 'Réponse '.($i+1)
-            ]);
-        }
-
-        $builder->add('propose', 'submit', [
-            'label' => 'Répondre',
+        $builder->add('wording', 'text', [
+            'label' => 'Réponse',
+            'constraints' => array(
+                new NotBlank()
+            )
         ]);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setRequired(['question']);
-        $resolver->setAllowedTypes(['question' => '\Kuizu\GameBundle\Entity\Question']);
+        $resolver->setDefaults([
+            'data_class' => 'Kuizu\GameBundle\Entity\Answer',
+        ]);
     }
 
     public function getName()
     {
-        return 'game';
+        return 'answer';
     }
 }

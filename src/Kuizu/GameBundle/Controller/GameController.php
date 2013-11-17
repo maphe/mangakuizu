@@ -2,8 +2,10 @@
 
 namespace Kuizu\GameBundle\Controller;
 
-use Kuizu\GameBundle\Form\Type\AnswerType;
-use Kuizu\GameBundle\Form\Type\MangaChoiceType;
+use Kuizu\GameBundle\Entity\Answer;
+use Kuizu\GameBundle\Entity\Question;
+use Kuizu\GameBundle\Form\Type\QuestionType;
+use Kuizu\GameBundle\Form\Type\UserAnswerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -33,17 +35,19 @@ class GameController extends Controller
             // @todo : no more question
         }
 
-        $gameForm = $this->createForm(new AnswerType(), null, ['question' => $question]);
+        $gameForm = $this->createForm(new UserAnswerType(), null, ['question' => $question]);
         $gameForm->handleRequest($request);
 
         if ($gameForm->isValid() && $gameForm->get('propose')->isClicked()) {
             $answers = $gameForm->getData();
             $correct = $game->processUserAnswer($this->getUser(), $question, $answers);
             if (true === $correct) {
-                $request->getSession()->getFlashBag()->add('success', 'Correct ! '.$question->getPoints().' points');
+                $request->getSession()->getFlashBag()->add('success',
+                    'Correct ! '.$question->getPoints().' points');
                 $game->pickQuestion($this->getUser());
             } else {
-                $request->getSession()->getFlashBag()->add('warning', 'Mauvaise réponse, réessayez ou pichez une nouvelle question');
+                $request->getSession()->getFlashBag()->add('warning',
+                    'Mauvaise réponse, réessayez ou pichez une nouvelle question');
             }
             return $this->redirect($this->generateUrl('kuizu_game_play'));
         }
@@ -55,8 +59,28 @@ class GameController extends Controller
         ]);
     }
 
-    public function askAction()
+    public function askAction(Request $request)
     {
+        $question = new Question();
+        $question->addAnswer(new Answer());
+        $form = $this->createForm(new QuestionType(), $question);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $question->setAuthor($this->getUser());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($question);
+            $em->flush($question);
+
+            $request->getSession()->getFlashBag()->add('success',
+                'Votre question a bien été ajoutée');
+
+            return $this->redirect($this->generateUrl('kuizu_game_ask'));
+        }
+
+        return $this->render('KuizuGameBundle:Game:ask.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
 }

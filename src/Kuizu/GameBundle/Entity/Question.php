@@ -258,6 +258,7 @@ class Question
      */
     public function addAnswer(\Kuizu\GameBundle\Entity\Answer $answers)
     {
+        $answers->setQuestion($this);
         $this->answers[] = $answers;
 
         return $this;

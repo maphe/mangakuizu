@@ -1,0 +1,26 @@
+parameters:
+    kuizuuser.ranking.manager.class: Kuizu\UserBundle\Service\Ranking\RankingManager
+    kuizuuser.ranking.helper.class: Kuizu\UserBundle\Service\Ranking\RankingHelper
+    kuizuuser.pager.helper.class: Kuizu\UserBundle\Service\Ranking\PagerHelper
+
+    kuizuuser.rank.conf:
+        elem_by_page: 30
+        route_id: kuizuuser_rank
+
+services:
+    kuizuuser.pager.helper:
+        class: %kuizuuser.pager.helper.class%
+
+    kuizuuser.ranking.helper:
+        class: %kuizuuser.ranking.helper.class%
+        arguments:
+            - @kuizuuser.pager.helper
+
+    kuizuuser.ranking.manager:
+        class: %kuizuuser.ranking.manager.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @security.context
+            - @kuizuuser.ranking.helper
+            - %kuizuuser.rank.conf%
+        scope: request

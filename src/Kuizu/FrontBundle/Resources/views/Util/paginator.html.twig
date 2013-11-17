@@ -1,0 +1,30 @@
+{#
+    @params
+        pager            Pager
+            current_page    int    current page number
+            nb_pages        int    number for the last page
+            target_route_id string route name for the link target
+#}
+{% set page = pager.getCurrentPage() %}
+<ul class="pagination pagination-centered">
+    {% if page > 1 %}
+        <li><a href="{{ path( pager.getTargetRouteId(), {'page': 1} ) }}">|&laquo;</a></li>
+        <li><a href="{{ path( pager.getTargetRouteId(), {'page': page-1} ) }}">&laquo;</a></li>
+    {% endif %}
+
+    {% for nb in range(page-3, page+3) %}
+        {% if nb > 0 and nb <= pager.getNbPages() %}
+            <li {% if page == nb %}class="active"{% endif %}>
+                <a
+                    href="{{ path( pager.getTargetRouteId(), {'page': nb} ) }}">
+                        {{ nb }}
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page < pager.getNbPages() %}
+        <li><a href="{{ path( pager.getTargetRouteId(), {'page': page+1} ) }}">&raquo;</a></li>
+        <li><a href="{{ path( pager.getTargetRouteId(), {'page': pager.getNbPages()} ) }}">&raquo;|</a></li>
+    {% endif %}
+</ul>

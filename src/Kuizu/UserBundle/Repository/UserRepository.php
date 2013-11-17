@@ -12,4 +12,86 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    const RANK_BY_PAGE = 50;
+
+    /**
+     * @param $page
+     * @param int $byPage
+     * @return mixed
+     */
+    public function getRanking($page, $byPage = self::RANK_BY_PAGE)
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.id', 'u.username', 'u.score')
+            ->orderBy('u.score', 'DESC')
+            ->setMaxResults($byPage)
+            ->setFirstResult(($page-1)*$byPage)
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param $score
+     * @return int
+     */
+    public function getRankPosition($score)
+    {
+        $count = $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->where('u.score > :score')
+            ->setParameter('score', $score)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return (int) $count + 1;
+    }
+
+    /**
+     * @param $score
+     * @param $user_id
+     * @param int $byPage
+     * @return array
+     */
+    public function getPositionPage($score, $user_id, $byPage = self::RANK_BY_PAGE)
+    {
+        $position = $this->getRankPosition($score);
+
+        $page = ceil($position/$byPage);
+        $start = $page*$byPage - ($byPage - 1);
+        $nb_before = $position - $start;
+        $nb_after = $page*$byPage - $position;
+
+        $before = $this->createQueryBuilder('u')
+            ->select('u.id', 'u.username', 'u.score')
+            ->where('u.score > :score')
+            ->orderBy('u.score', 'ASC')
+            ->setParameter(':score', $score)
+            ->setMaxResults($nb_before)
+            ->getQuery()
+            ->execute();
+
+        $after = $this->createQueryBuilder('u')
+            ->select('u.id', 'u.username', 'u.score')
+            ->where('u.score <= :score')
+            ->andWhere('u.id != :uid')
+            ->orderBy('u.score', 'DESC')
+            ->setParameter(':score', $score)
+            ->setParameter(':uid', $user_id)
+            ->setMaxResults($nb_after)
+            ->getQuery()
+            ->execute();
+
+        return array('before' => array_reverse($before), 'after' => $after);
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
