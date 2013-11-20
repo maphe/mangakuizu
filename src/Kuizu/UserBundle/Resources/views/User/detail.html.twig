@@ -1,0 +1,28 @@
+{% extends 'KuizuFrontBundle::layout.html.twig' %}
+
+{% block title %}KuizuUserBundle:User:detail{% endblock %}
+
+{% block content %}
+<table class="table table-bordered">
+    <tr>
+        <th>User</th>
+        <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <th>Score</th>
+        <td>{{ user.score }}</td>
+    </tr>
+    <tr>
+        <th>Classement</th>
+        <td>{{ rank }}</td>
+    </tr>
+    <tr>
+        <th>Questions posées</th>
+        <td>{{ nb_questions }}</td>
+    </tr>
+    <tr>
+        <th>Réponses données</th>
+        <td>{{ nb_answers }}</td>
+    </tr>
+</table>
+{% endblock %}

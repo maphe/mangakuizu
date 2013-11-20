@@ -14,6 +14,11 @@ use Kuizu\UserBundle\Entity\User;
  */
 class AnsweredRepository extends EntityRepository
 {
+    /**
+     * @param User $user
+     * @param Manga $manga
+     * @return int
+     */
     public function countByUserAndManga(User $user, Manga $manga)
     {
         $count = $this->createQueryBuilder('a')
@@ -28,6 +33,26 @@ class AnsweredRepository extends EntityRepository
         return (int) $count;
     }
 
+    /**
+     * @param User $user
+     * @return int
+     */
+    public function countByUser(User $user)
+    {
+        $count = $this->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->where('a.user = :uid')
+            ->setParameter('uid', $user->getId())
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return (int) $count;
+    }
+
+    /**
+     * @param User $user
+     * @return array
+     */
     public function getQuestionIdsByUser(User $user)
     {
         return $this->createQueryBuilder('a')

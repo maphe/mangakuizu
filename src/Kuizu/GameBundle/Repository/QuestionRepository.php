@@ -14,6 +14,10 @@ use Kuizu\UserBundle\Entity\User;
  */
 class QuestionRepository extends EntityRepository
 {
+    /**
+     * @param Manga $manga
+     * @return int
+     */
     public function countByManga(Manga $manga = null)
     {
         $qb = $this->createQueryBuilder('q')
@@ -32,6 +36,11 @@ class QuestionRepository extends EntityRepository
         return (int) $count;
     }
 
+    /**
+     * @param Manga $manga
+     * @param array $excludedIds
+     * @return mixed
+     */
     public function findOneRandomlyByManga(Manga $manga = null, array $excludedIds = [])
     {
         $count = $this->countByManga($manga) - count($excludedIds);
@@ -55,5 +64,21 @@ class QuestionRepository extends EntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param User $author
+     * @return int
+     */
+    public function countByAuthor(User $author)
+    {
+        $count = $this->createQueryBuilder('q')
+            ->select('count(q.id)')
+            ->where('q.author = :uid')
+            ->setParameter('uid', $author->getId())
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return (int) $count;
     }
 }

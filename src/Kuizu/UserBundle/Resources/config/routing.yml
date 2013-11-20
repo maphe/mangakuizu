@@ -7,3 +7,9 @@ kuizuuser_rank:
     defaults: { _controller: KuizuUserBundle:Rank:index, page: 1 }
     requirements:
         page: \d+|me
+
+kuizu_user_detail:
+    pattern: /user/{user}
+    defaults: { _controller: KuizuUserBundle:User:detail }
+    requirements:
+        user: \d+

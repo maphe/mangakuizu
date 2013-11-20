@@ -1,0 +1,47 @@
+{% extends "KuizuFrontBundle::layout.html.twig" %}
+
+{% block content -%}
+    <h1>Manga list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Image</th>
+                <th>Summary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('kuizu_admin_manga_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.slug }}</td>
+                <td>{{ entity.image }}</td>
+                <td>{{ entity.summary }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('kuizu_admin_manga_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('kuizu_admin_manga_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('kuizu_admin_manga_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

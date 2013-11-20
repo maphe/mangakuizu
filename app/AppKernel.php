@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Kuizu\GameBundle\KuizuGameBundle(),
             new Kuizu\UserBundle\KuizuUserBundle(),
             new Kuizu\FrontBundle\KuizuFrontBundle(),
+            new Kuizu\AdminBundle\KuizuAdminBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

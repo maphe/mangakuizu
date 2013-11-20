@@ -1,0 +1,30 @@
+kuizu_admin_manga:
+    pattern:  /
+    defaults: { _controller: "KuizuAdminBundle:Manga:index" }
+
+kuizu_admin_manga_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "KuizuAdminBundle:Manga:show" }
+
+kuizu_admin_manga_new:
+    pattern:  /new
+    defaults: { _controller: "KuizuAdminBundle:Manga:new" }
+
+kuizu_admin_manga_create:
+    pattern:  /create
+    defaults: { _controller: "KuizuAdminBundle:Manga:create" }
+    requirements: { _method: post }
+
+kuizu_admin_manga_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "KuizuAdminBundle:Manga:edit" }
+
+kuizu_admin_manga_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "KuizuAdminBundle:Manga:update" }
+    requirements: { _method: post|put }
+
+kuizu_admin_manga_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "KuizuAdminBundle:Manga:delete" }
+    requirements: { _method: post|delete }

@@ -25,6 +25,10 @@ kuizu_front:
     resource: "@KuizuFrontBundle/Resources/config/routing.yml"
     prefix:   /
 
+kuizu_admin:
+    resource: "@KuizuAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 kuizu_user:
     resource: "@KuizuUserBundle/Resources/config/routing.yml"
     prefix:   /
