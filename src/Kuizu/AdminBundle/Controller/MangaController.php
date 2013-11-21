@@ -34,6 +34,8 @@ class MangaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->upload();
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -163,6 +165,9 @@ class MangaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            if ($entity->getImage()) {
+                $entity->upload();
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('kuizu_admin_manga_edit', array('id' => $id)));

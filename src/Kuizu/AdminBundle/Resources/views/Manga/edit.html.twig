@@ -3,6 +3,7 @@
 {% block content -%}
     <h1>Manga edit</h1>
 
+    <img src="{{ asset(entity.imageWebPath) }}" />
     {{ form(edit_form) }}
 
         <ul class="record_actions">

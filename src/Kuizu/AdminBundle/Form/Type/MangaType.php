@@ -16,7 +16,10 @@ class MangaType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('image')
+            ->add('image', 'file', [
+                'data_class' => null,
+                'required' => false
+            ])
             ->add('summary')
         ;
     }
