@@ -3,7 +3,7 @@
 {% block content -%}
     <h1>Manga list</h1>
 
-    <table class="records_list">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,14 +21,8 @@
                 <td>{{ entity.slug }}</td>
                 <td><img src="{{ asset(entity.imageWebPath) }}" /></td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('kuizu_admin_manga_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('kuizu_admin_manga_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <a href="{{ path('kuizu_admin_manga_show', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{{ path('kuizu_admin_manga_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
                 </td>
             </tr>
         {% endfor %}

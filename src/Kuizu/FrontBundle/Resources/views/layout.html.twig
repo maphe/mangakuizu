@@ -38,27 +38,25 @@
         </div>
     </nav>
 
+    {% if is_granted("ROLE_CONTRIB") %}
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand">Admin</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('kuizu_admin_manga') }}">Manga</a></li>
+                    {#<li><a href="{{ path('question') }}">{{ 'layout.contrib.question'|trans }}</a></li>#}
+                </ul>
+            </div>
+        </nav>
+    {% endif %}
+
     {#     <header>#}
     {#         <img src="{{ asset('bundles/kuizuweb/img/banniere.png') }}" />#}
     {#     </header>#}
 
     <div id="content" class="well">
-
-        {#{% if is_granted("ROLE_CONTRIB") %}
-            <nav class="navbar navbar-static-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <div class="nav-collapse collapse">
-                            <p class="navbar-text pull-left"><span class="label label-inverse">{{ 'layout.admin'|trans }}</span></p>
-                            <ul class="nav">
-                                <li><a href="{{ path('kuizu_contrib_manga') }}">{{ 'layout.contrib.manga'|trans }}</a></li>
-                                <li><a href="{{ path('question') }}">{{ 'layout.contrib.question'|trans }}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        {% endif %}#}
 
         {% for key, messages in app.session.flashbag.all() %}
             {% if key in ['success', 'error', 'warning', 'info'] %}
