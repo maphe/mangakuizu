@@ -2,23 +2,44 @@
 
 namespace Kuizu\CoreBundle\DataFixture\ORM;
 
+use Kuizu\GameBundle\Entity\Answer;
 use Kuizu\GameBundle\Entity\Question;
-
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Yaml\Yaml;
 
 class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $question1 = new Question();
+        $fixtures = Yaml::parse(file_get_contents(__DIR__.'/../../Resources/config/fixtures/questions.yml'));
+
+        foreach ($fixtures as $ref => $questionData) {
+            $question = new Question();
+            $question->setWording($questionData['wording']);
+            $question->setManga($this->getReference($questionData['manga']));
+            $question->setPoints($questionData['points']);
+            $question->setAuthor($this->getReference(isset($questionData['author']) ? $questionData['author'] : 'user-soct'));
+            $manager->persist($question);
+
+            foreach ($questionData['answers'] as $wording) {
+                $answer = new Answer();
+                $answer->setWording($wording);
+                $answer->setQuestion($question);
+                $manager->persist($answer);
+            }
+
+            $manager->flush();
+        }
+
+        /*$question1 = new Question();
         $question1->setWording('Quel surnom donne Ivankov à Luffy ?');
         //$question1->setAnswer('Mugiwara Boy');
         $question1->setManga($this->getReference('manga-one-piece'));
         $question1->setPoints(2);
         $question1->setAuthor($this->getReference('user-sokaru'));
-        $manager->persist($question1);
+        $manager->persist($question1);*/
 
         /*$question2 = new Question();
         $question2->setWording('Quel est le nom de famille de Naruto ?');
@@ -36,12 +57,12 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
         $question3->setAuthor($this->getReference('user-soct'));
         $manager->persist($question3);*/
 
-        $question4 = new Question ();
+        /*$question4 = new Question ();
         $question4->setWording('Qui compose la famille du dixième Vongola ? (Les noms complet sont attendus.)');
         $question4->setManga($this->getReference('manga-kateikyoushi-hitman-reborn'));
         $question4->setPoints(10);
         $question4->setAuthor($this->getReference('user-soct'));
-        $manager->persist($question4);
+        $manager->persist($question4);*/
 
         /*$question5 = new Question ();
         $question5->setWording('Qui a créé Bleach ?');
@@ -467,12 +488,12 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($question51);
         */
 
-        $manager->flush();
+        //$manager->flush();
 
-        $this->addReference('one-piece-q1', $question1);
+        //$this->addReference('one-piece-q1', $question1);
         /*$this->addReference('naruto-q1', $question2);
         $this->addReference('kateikyoushi-hitman-reborn-q1', $question3);*/
-        $this->addReference('kateikyoushi-hitman-reborn-q2', $question4);
+        //$this->addReference('kateikyoushi-hitman-reborn-q2', $question4);
         /*$this->addReference('bleach-q1', $question5);
         $this->addReference('bleach-q2', $question6);
         $this->addReference('fairy-tail-q1', $question7);

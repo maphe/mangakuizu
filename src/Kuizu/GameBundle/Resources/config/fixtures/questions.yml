@@ -1,0 +1,31 @@
+q1:
+    wording: Quel surnom donne Ivankov à Luffy ?
+    manga: manga-one-piece
+    points: 2
+    author: user-sokaru
+    answers:
+        - Mugiwara Boy
+q2:
+    wording: Quel est le nom de famille de Naruto ?
+    manga: manga-naruto
+    points: 1
+    answers:
+        - Uzumaki
+q3:
+    wording: Quel est le surnom de Tsuna ?
+    manga: manga-kateikyoushi-hitman-reborn
+    points: 1
+    answers:
+        - Tsunaze
+q4:
+    wording: Qui compose la famille du dixième Vongola ? (Les noms complet sont attendus.)
+    manga: manga-kateikyoushi-hitman-reborn
+    points: 10
+    answers:
+        - Tsunayoshi Sawada
+        - Gokudera Hayato
+        - Yamamoto Takeshi
+        - Ryohei Sasagawa
+        - Hibari Kyoya
+        - Lambo
+        - Chrome Dokuro

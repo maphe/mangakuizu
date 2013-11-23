@@ -11,7 +11,7 @@ class LoadAnswer extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $question1 = $this->getReference('one-piece-q1');
+        /*$question1 = $this->getReference('one-piece-q1');
 
         $answer1 = new Answer();
         $answer1->setWording('Mugiwara Boy');
@@ -57,7 +57,7 @@ class LoadAnswer extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->flush();
 
-        $this->addReference('one-piece-q1-a1', $answer1);
+        $this->addReference('one-piece-q1-a1', $answer1);*/
     }
 
     public function getOrder()
