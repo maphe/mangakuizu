@@ -1,0 +1,30 @@
+kuizu_admin_question:
+    pattern:  /
+    defaults: { _controller: "KuizuAdminBundle:Question:index" }
+
+kuizu_admin_question_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "KuizuAdminBundle:Question:show" }
+
+kuizu_admin_question_new:
+    pattern:  /new
+    defaults: { _controller: "KuizuAdminBundle:Question:new" }
+
+kuizu_admin_question_create:
+    pattern:  /create
+    defaults: { _controller: "KuizuAdminBundle:Question:create" }
+    requirements: { _method: post }
+
+kuizu_admin_question_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "KuizuAdminBundle:Question:edit" }
+
+kuizu_admin_question_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "KuizuAdminBundle:Question:update" }
+    requirements: { _method: post|put }
+
+kuizu_admin_question_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "KuizuAdminBundle:Question:delete" }
+    requirements: { _method: post|delete }

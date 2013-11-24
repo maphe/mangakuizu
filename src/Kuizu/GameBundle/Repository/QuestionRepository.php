@@ -15,6 +15,21 @@ use Kuizu\UserBundle\Entity\User;
 class QuestionRepository extends EntityRepository
 {
     /**
+     * @param int $id
+     * @return Question
+     */
+    public function find($id)
+    {
+        return $this->createQueryBuilder('q')
+            ->select('q', 'm')
+            ->join('q.manga', 'm')
+            ->where('q.id = :qid')
+            ->setParameter('qid', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * @param Manga $manga
      * @return int
      */
@@ -45,7 +60,9 @@ class QuestionRepository extends EntityRepository
     {
         $count = $this->countByManga($manga) - count($excludedIds);
 
-        $qb = $this->createQueryBuilder('q');
+        $qb = $this->createQueryBuilder('q')
+            ->select('q')
+            ->join('q.manga', 'm');
 
         if (null !== $manga) {
             $qb

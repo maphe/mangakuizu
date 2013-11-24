@@ -28,7 +28,7 @@ class MangaChoiceType extends AbstractType
         $builder->add('manga', 'entity', [
             'class'            => 'KuizuGameBundle:Manga',
             'property'         => 'name',
-            'empty_value'      => 'Tous les manga',
+            'empty_value'      => 'Tous les mangas',
             'expanded'         => false,
             'multiple'         => false,
             'label'            => 'Manga',

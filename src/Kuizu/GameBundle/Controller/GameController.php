@@ -8,6 +8,7 @@ use Kuizu\GameBundle\Form\Type\QuestionType;
 use Kuizu\GameBundle\Form\Type\UserAnswerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GameController extends Controller
 {
@@ -81,6 +82,13 @@ class GameController extends Controller
         return $this->render('KuizuGameBundle:Game:ask.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    public function alertAction(Question $question, $type)
+    {
+        $this->get('kuizugame.game.manager')->alertQuestion($question, $type);
+
+        return new Response();
     }
 
 }

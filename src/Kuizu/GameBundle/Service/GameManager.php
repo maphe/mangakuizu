@@ -55,13 +55,17 @@ class GameManager
 
     public function setCurrentQuestion(Question $question = null)
     {
-        $this->session->set(self::SESSION_CURRENT_QUESTION, $question);
+        $this->session->set(self::SESSION_CURRENT_QUESTION, $question->getId());
     }
 
     public function getCurrentQuestion()
     {
-        $question = $this->session->get(self::SESSION_CURRENT_QUESTION);
-        return (null === $question) ? null : $this->em->merge($question);
+        $questionId = $this->session->get(self::SESSION_CURRENT_QUESTION);
+        if (null !== $questionId) {
+            $question = $this->em->getRepository('KuizuGameBundle:Question')->find($questionId);
+            return $question;
+        }
+        return null;
     }
 
     public function getQuestionSmartly(User $user = null)
@@ -93,5 +97,16 @@ class GameManager
             return true;
         }
         return false;
+    }
+
+    public function alertQuestion(Question $question, $type)
+    {
+        if ('duplicate' === $type) {
+            $question->incNbAlertsDuplicate();
+        } else if ('answer' === $type) {
+            $question->incNbAlertsAnswer();
+        }
+        $this->em->persist($question);
+        $this->em->flush();
     }
 }

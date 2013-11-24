@@ -4,10 +4,14 @@
 
 {% block content %}
 
-<h1>Welcome to the Game:play page</h1>
 {{ form(choice_form) }}
 
-{{ question.wording }}
+<img id="play-manga-img" src="{{ asset(question.manga.imageWebPath) }}" />
+<h1>{{ question.wording }}</h1>
+
+{#% if is_granted("ROLE_USER") %}
+    <a class="alert-question-link" href="{{ path('kuizu_game_alert', {'question': question.id, 'type': 'duplicate'}) }}"><span class="glyphicon glyphicon-repeat"></span></a>
+{% endif %#}
 
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     {{ form(game_form) }}
@@ -16,3 +20,16 @@
 {% endif %}
 
 {% endblock %}
+
+{#% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function(){
+            $('.alert-question-link').click(function(event){
+                event.preventDefault();
+                $.post($(this).attr('href'));
+                $(this).removeAttr('href').attr('title', 'Alerte envoyée').tooltip('show');
+            });
+        });
+    </script>
+{% endblock %#}

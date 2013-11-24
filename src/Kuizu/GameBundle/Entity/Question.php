@@ -144,6 +144,18 @@ class Question
     }
 
     /**
+     * Inc nbAlertsDuplicate
+     *
+     * @return Question
+     */
+    public function incNbAlertsDuplicate()
+    {
+        $this->setNbAlertsDuplicate($this->getNbAlertsDuplicate() + 1);
+
+        return $this;
+    }
+
+    /**
      * Get nbAlertsDuplicate
      *
      * @return integer
@@ -164,6 +176,16 @@ class Question
         $this->nbAlertsAnswer = $nbAlertsAnswer;
 
         return $this;
+    }
+
+    /**
+     * Inc nbAlertsAnswer
+     *
+     * @return Question
+     */
+    public function incNbAlertsAnswer()
+    {
+        return $this->setNbAlertsAnswer($this->getNbAlertsAnswer() + 1);
     }
 
     /**

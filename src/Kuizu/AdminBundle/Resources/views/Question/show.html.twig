@@ -1,0 +1,48 @@
+{% extends "KuizuFrontBundle::layout.html.twig" %}
+
+{% block content -%}
+    <h1>Question</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Wording</th>
+                <td>{{ entity.wording }}</td>
+            </tr>
+            <tr>
+                <th>Points</th>
+                <td>{{ entity.points }}</td>
+            </tr>
+            <tr>
+                <th>Nbalertsduplicate</th>
+                <td>{{ entity.nbAlertsDuplicate }}</td>
+            </tr>
+            <tr>
+                <th>Nbalertsanswer</th>
+                <td>{{ entity.nbAlertsAnswer }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('kuizu_admin_question') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('kuizu_admin_question_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

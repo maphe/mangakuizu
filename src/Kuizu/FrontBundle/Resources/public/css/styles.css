@@ -21,3 +21,7 @@ nav li {
     padding-top: 50px;
     min-height: 600px;
 }
+
+#play-manga-img {
+    float: right;
+}

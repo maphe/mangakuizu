@@ -1,3 +1,7 @@
 kuizu_admin_manga:
     resource: "@KuizuAdminBundle/Resources/config/routing/manga.yml"
     prefix:   /manga
+
+kuizu_admin_question:
+    resource: "@KuizuAdminBundle/Resources/config/routing/question.yml"
+    prefix:   /question

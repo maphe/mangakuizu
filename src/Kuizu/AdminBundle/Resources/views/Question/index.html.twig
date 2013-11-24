@@ -1,0 +1,43 @@
+{% extends "KuizuFrontBundle::layout.html.twig" %}
+
+{% block content -%}
+    <h1>Question list</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Wording</th>
+                <th>Points</th>
+                <th><span class="glyphicon glyphicon-repeat"></th>
+                <th><span class="glyphicon glyphicon-exclamation-sign"></th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('kuizu_admin_question_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.wording }}</td>
+                <td>{{ entity.points }}</td>
+                <td>{{ entity.nbAlertsDuplicate }}</td>
+                <td>{{ entity.nbAlertsAnswer }}</td>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <a href="{{ path('kuizu_admin_question_show', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{{ path('kuizu_admin_question_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kuizu_admin_question_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock %}

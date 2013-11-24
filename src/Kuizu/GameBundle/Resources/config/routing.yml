@@ -6,6 +6,14 @@ kuizu_game_ask:
     pattern: /ask
     defaults: { _controller: KuizuGameBundle:Game:ask }
 
+kuizu_game_alert:
+    pattern: /alert/{question}/{type}
+    defaults: { _controller: KuizuGameBundle:Game:alert }
+    requirements:
+        _method: POST
+        question: \d+
+        type: duplicate|answer
+
 kuizu_manga_list:
     pattern: /manga/list
     defaults: { _controller: KuizuGameBundle:Manga:list }
