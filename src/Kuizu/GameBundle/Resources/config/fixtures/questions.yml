@@ -5,18 +5,21 @@ q1:
     author: user-sokaru
     answers:
         - Mugiwara Boy
+
 q2:
     wording: Quel est le nom de famille de Naruto ?
     manga: manga-naruto
     points: 1
     answers:
         - Uzumaki
+
 q3:
     wording: Quel est le surnom de Tsuna ?
     manga: manga-kateikyoushi-hitman-reborn
     points: 1
     answers:
         - Tsunaze
+
 q4:
     wording: Qui compose la famille du dixième Vongola ? (Les noms complet sont attendus.)
     manga: manga-kateikyoushi-hitman-reborn
@@ -29,3 +32,345 @@ q4:
         - Hibari Kyoya
         - Lambo
         - Chrome Dokuro
+
+q5:
+    wording: Qui a créé Bleach ?
+    manga: manga-bleach
+    points: 2
+    answers:
+        - Tite Kubo
+
+q6:
+    wording: Quel est le nom du 90ème Hado ?
+    manga: manga-bleach
+    points: 8
+    answers:
+        - Kurohitsugi
+
+q7:
+    wording: Quel est le nom du dragon qui a élévé Natsu Dragnil ?
+    manga: manga-fairy-tail
+    points: 1
+    answers:
+        - Igneel
+
+q8:
+    wording: Au début de Fairy Tail qui fait la converture du Sorcerer Magazine ?
+    manga:  manga-fairy-tail
+    points: 2
+    answers:
+        - Mirajane
+
+q9:
+    wording: Quels sont les 13 membres de la brigade fantôme ? (Les 13 premiers que l'on voit dans le manga)
+    manga: manga-hunter-x-hunter
+    points: 10
+    answers:
+        - Shizuku
+        - Uvoguine
+        - Franklin
+        - Machi
+        - Kurutopi
+        - Sharnalk
+        - Nobunaga
+        - Pakunoda
+        - Bonole
+        - Feitan
+        - Finks
+        - Hisoka
+        - Kuroro
+
+q10:
+    wording: Quel est le score de Seirin contre Shutoku lors de leur premier match ?
+    manga: manga-kuroko-no-basket
+    points: 3
+    answers:
+        - 82
+
+q11:
+    wording: Quel est le numéro de Hyuga ?
+    manga: manga-kuroko-no-basket
+    points: 2
+    answers:
+        - 4
+
+q12:
+    wording: Quel est le nom de L ?
+    manga: manga-death-note
+    points: 2
+    answers:
+        - Lawliet
+
+q13:
+    wording: Qui est la première victime de Kira ?
+    manga: manga-death-note
+    points: 9
+    answers:
+        - Kurô Otoharada
+
+q14:
+    wording: Que signifie AT ?
+    manga: manga-air-gear
+    points: 1
+    answers:
+        - Air Trecks
+
+q15:
+    wording: Quel est le vrai nom de l'auteur de Air Gear ?
+    manga: manga-air-gear
+    points: 3
+    answers:
+        - Ogure Ito
+
+q16:
+    wording: Quel est le nom du rival des héros ?
+    manga: manga-bakuman
+    points: 2
+    answers:
+        - Nizuma Eiji
+
+q17:
+    wording: Quel est le surnom d'auteur de notre duo ?
+    manga: manga-bakuman
+    points: 3
+    answers:
+        - Muto Ashirogi
+
+q18:
+    wording: Quel est le nom du héros ?(le nom complet est attendu)
+    manga: manga-beelzebub
+    points: 1
+    answers:
+        - Oga Tatsumi
+
+q19:
+    wording: Qui est amoureuse du héros ?
+    manga: manga-beelzebub
+    points: 3
+    answers:
+        - Aoi Kunieda
+
+q20:
+    wording: Que signifie "Alucard" ?
+    manga: manga-hellsing
+    points: 2
+    answers: Dracula
+
+q21:
+    wording: Quel est le nom complet de Sir Integra ?
+    manga: manga-hellsing
+    points: 6
+    answers:
+        - Sir Integra Fairbrook Wingates Hellsing
+
+q22:
+    wording: A qui la phrase : The Bird of the Hermes is my name ; Eating my wings to make me tame, fait-elle référence ?
+    manga: manga-hellsing
+    points: 10
+    answers:
+        - Nicolas Flamel
+
+q23:
+    wording: Qui sont les 4 empereurs ?
+    manga: manga-toriko
+    points: 4
+    answers:
+        - Toriko
+        - Coco
+        - Sunny
+        - Zebra
+
+q24:
+    wording: Quel est le nom du héro ?
+    manga: manga-campione
+    points: 1
+    answers:
+        - Godou Kusanagi
+
+q25:
+    wording: Comment s'appelle les frères Elric ?
+    manga: manga-fullmetal
+    points: 2
+    answers:
+        - Edward
+        - Alphonse
+
+q26:
+    wording: Comment s'appelle la petite fille qui sera fusionner avec son chien ?
+    manga: manga-fullmetal
+    points: 5
+    answers:
+        - Nina
+
+q27:
+    wording: Quel est le nom de la mère de Son Gohan ?
+    manga: manga-dbz
+    points: 3
+    answers:
+        - Chichi
+
+q28:
+    wording: Qui sont les 3 personnages principaux ?
+    manga: manga-samuraichamploo
+    points: 4
+    answers:
+        - Mugen
+        - Jin
+        - Fuu
+
+q29:
+    wording: Qui était le premier propriètaire du chapeau de paille ?
+    manga: manga-one-piece
+    points: 2
+    answers:
+        - Gold D.Roger
+
+q30:
+    wording: Quelle était la première prime de Luffy ? (seulement en chiffre)
+    manga: manga-one-piece
+    points: 1
+    answers:
+        - 30000000
+
+q31:
+    wording: Quel est le nom du village de Nami ?
+    manga: manga-one-piece
+    points: 2
+    answers:
+        - Kokoyashi
+
+q32:
+    wording: Quel est le nom de Kuma ?
+    manga: manga-one-piece
+    points: 3
+    answers:
+        - Bartholomew
+
+q33:
+    wording: Quels sont les 11 supernovas ?
+    manga: manga-one-piece
+    points: 10
+    answers:
+        - Monkey D. Luffy
+        - Trafalgar Law
+        - Eustass Kidd
+        - X. Drake
+        - Jewelry Bonney
+        - Scratchmen Apoo
+        - Capone Bege
+        - Basil Hawkins
+        - Zoro Roronoa
+        - Killer
+        - Urouge
+
+q34:
+    wording: Quel est le nom du dernier katana que Zoro obtien ?
+    manga: manga-one-piece
+    points: 4
+    answers:
+        - Shuusui
+
+q35:
+    wording: Qui a mangé le Tori Tori No Mi ?
+    manga: manga-one-piece
+    points: 5
+    answers:
+        - Pell
+
+q36:
+    wording: Quel est le vrai de Kuybi ?
+    manga: manga-naruto
+    points: 4
+    answers:
+        - Kurama
+
+q37:
+    wording: Comment appelle-t-on la version évoluée du sharingan ?
+    manga: manga-naruto
+    points: 3
+    answers:
+        - Mangekyo Sharingan
+
+q38:
+    wording: Qui est le père de Naruto ?
+    manga: manga-naruto
+    points: 2
+    answers:
+        - Minato Namikaze
+
+q39:
+    wording: Qui est l'auteur de Naruto ?
+    manga: manga-naruto
+    points: 3
+    answers:
+        - Masashi Kishimoto
+
+q40:
+    wording: Combien d'hokage à connu Konoha ? (répondre en chiffre)
+    manga: manga-naruto
+    points: 2
+    answers:
+        - 5
+
+q41:
+    wording: ('Quel est le nom des yeux du clan Hyuuga ?');
+    manga: manga-naruto
+    points: 2
+    answers:
+        - Byakugan
+
+q42:
+    wording: Quel est le nom du clan qui se sert d'insectes comme arme ?
+    manga: manga-naruto
+    points: 3
+    answers:
+        - Aburame
+
+q43:
+    wording: Quel est  le type d'animaux invoqués par le Kuchiyose no Jutsu de Jiraya ?
+    manga: manga-naruto
+    points: 1
+    answers:
+        - Crapaud
+
+q44:
+    wording: Comment appelle-t-on les âmes artificielles ? (exemple Kon)
+    manga: manga-bleach
+    points: 2
+    answers:
+        - Mod Soul
+
+q45:
+    wording: De quelle couleur sont les liens spirituels d'un shinigami ?
+    manga: manga-bleach
+    points: 2
+    answers:
+        - Rouge
+
+q46:
+    wording: Quel est le nom du zanpakuto de Kisuké ?
+    manga: manga-bleach
+    points: 4
+    answers:
+        - Benihime
+
+q47:
+    wording: Quel est le nom de famille de Rukia ?
+    manga: manga-bleach
+    points: 1
+    answers:
+        - Kuchiki
+
+q48:
+    wording: Quel est le nom du Getsuga Tenshô Ultime ?
+    manga: manga-bleach
+    points: 3
+    answers:
+        - Mugetsu
+
+q49:
+    wording: Contre quel gardien se bat Ichigo lors de son arrivé à la Soul Society ?
+    manga: manga-bleach
+    points: 4
+    answers:
+        - Jidanbou
